@@ -1,0 +1,16 @@
+name: Muninn Context Receipt
+on: pull_request
+permissions:
+  pull-requests: write
+  contents: read
+jobs:
+  context-receipt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bronsonaber/muninn-client@29d5e153e6cd9296fa5adcebd985f2a3ea15bf63  # pinned: v0.1.1
+        with:
+          server-url: 'https://muninn-edge.bronson-aber.workers.dev'
+          server-pubkey: ${{ vars.MUNINN_SERVER_PUBKEY }}
+          client-key-id: ${{ vars.MUNINN_CLIENT_KEY_ID }}
+          client-private-key: ${{ secrets.MUNINN_CLIENT_PRIVATE_KEY_PEM }}

@@ -1,0 +1,12 @@
+{
+  "name": "muninn-flagship-demo",
+  "version": "1.0.0",
+  "description": "Throwaway repo demonstrating a Muninn pnpm-vs-npm context collision catch.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node -e \"require('./src/index.js'); console.log('ok')\""
+  },
+  "license": "UNLICENSED",
+  "dependencies": { "left-pad": "1.3.0" }
+}
