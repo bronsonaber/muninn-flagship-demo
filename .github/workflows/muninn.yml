@@ -1,16 +1,24 @@
 name: Muninn Context Receipt
+
 on: pull_request
+
 permissions:
   pull-requests: write
   contents: read
+
 jobs:
   context-receipt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Pinned to an immutable commit SHA, not @main: this job runs with
+      # access to this repo's raw files and secrets BEFORE Muninn's own
+      # redaction step fires, so a mutable ref would let a compromised
+      # muninn-client `main` run changed, unreviewed code in that window.
+      # Bump only on a Muninn security bulletin / release advisory.
       - uses: bronsonaber/muninn-client@d0bbeaa265f895b772a8855f2a4e8dd995e757c1  # pinned: v0.1.3
         with:
-          server-url: 'https://muninn-edge.bronson-aber.workers.dev'
+          server-url: ${{ vars.MUNINN_SERVER_URL }}
           server-pubkey: ${{ vars.MUNINN_SERVER_PUBKEY }}
           client-key-id: ${{ vars.MUNINN_CLIENT_KEY_ID }}
           client-private-key: ${{ secrets.MUNINN_CLIENT_PRIVATE_KEY_PEM }}
