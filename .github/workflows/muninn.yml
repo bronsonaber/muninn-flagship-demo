@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bronsonaber/muninn-client@d0bbeaa265f895b772a8855f2a4e8dd995e757c1  # pinned: v0.1.3
+      - uses: Alkhemy-AI/muninn-receipt-action@cf6c87b03f85dd4ea57d50d07f62d3fb7aabc009  # pinned: v1
         with:
           server-url: 'https://muninn-edge.bronson-aber.workers.dev'
           server-pubkey: ${{ vars.MUNINN_SERVER_PUBKEY }}
